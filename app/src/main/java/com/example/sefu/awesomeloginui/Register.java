@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sefu.awesomeloginui.dialog.CustomDialogFragment;
@@ -14,6 +15,7 @@ import com.example.sefu.awesomeloginui.dialog.CustomDialogFragment;
 public class Register extends AppCompatActivity {
     ImageView closeImage;
     Button register;
+    TextView signgInLink;
 
     EditText edtFullname, edtEmail, edtPassword, edtDOB;
     String fullname, email, password, dob;
@@ -28,7 +30,14 @@ public class Register extends AppCompatActivity {
         edtPassword = (EditText) findViewById(R.id.editTextPassword);
         edtDOB = (EditText) findViewById(R.id.editTextDOB);
 
-
+        signgInLink=(TextView)findViewById(R.id.sigmuplink) ;
+        signgInLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent closeRegister = new Intent(getApplicationContext(), Login.class);
+                startActivity(closeRegister);
+            }
+        });
         closeImage = (ImageView) findViewById(R.id.close);
         closeImage.setOnClickListener(new View.OnClickListener() {
             @Override
