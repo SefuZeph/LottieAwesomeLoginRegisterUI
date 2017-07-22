@@ -2,7 +2,14 @@
 <resources>
     <color name="colorPrimary">#50d2c2</color>
     <color name="colorPrimaryDark">#1d9e8e</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#07435c</color>
     <color name="normalText">#a8a8aa</color>
     <color name="linkedText">#1d1d26</color>
+
+    <color name="textColorPrimary">#212121</color>
+    <color name="textColorSecondary">#757575</color>
+    <color name="linkColor">#0b76a4</color>
+
+    <color name="grey_300">#E0E0E0</color>
+    <color name="color_white">#fefefe</color>
 </resources>

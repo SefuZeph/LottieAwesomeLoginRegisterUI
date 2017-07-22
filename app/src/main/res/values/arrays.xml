@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="ld_activityScreenTitles">
+        <item>Home</item>
+        <item>Calender</item>
+        <item>Overview</item>
+        <item>Groups</item>
+        <item>Lists</item>
+        <item>Profile</item>
+        <item>Timeline</item>
+        <item>Settings</item>
+        <item>Log Out</item>
+    </string-array>
+
+    <array name="ld_activityScreenIcons">
+        <item>@drawable/ic_home_black_24dp</item>
+        <item>@drawable/ic_event_black_24dp</item>
+        <item>@drawable/ic_art_track_black_24dp</item>
+        <item>@drawable/ic_group_black_24dp</item>
+        <item>@drawable/ic_list_black_24dp</item>
+        <item>@drawable/ic_business_center_black_24dp</item>
+        <item>@drawable/ic_bubble_chart_black_24dp</item>
+        <item>@drawable/ic_settings_black_24dp</item>
+        <item>@drawable/ic_settings_power_black_24dp</item>
+    </array>
+
+</resources>
