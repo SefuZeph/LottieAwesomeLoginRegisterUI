@@ -1,21 +1,23 @@
 package com.example.sefu.awesomeloginui.fragment;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.sefu.awesomeloginui.R;
 import com.example.sefu.awesomeloginui.adapter.CardHomeDateAdapter;
+import com.example.sefu.awesomeloginui.adapter.CardHomeMeetingAdapter;
 import com.example.sefu.awesomeloginui.model.DataDateModel;
-import com.example.sefu.awesomeloginui.model.MyData;
+import com.example.sefu.awesomeloginui.model.DataMeetingModel;
+import com.example.sefu.awesomeloginui.model.MyDaysData;
+import com.example.sefu.awesomeloginui.model.MyMeetingData;
 
 import java.util.ArrayList;
 
@@ -25,12 +27,17 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
 
 
-    private static RecyclerView.Adapter adapter;
+    private static RecyclerView.Adapter adapter, adapterTwo;
     private RecyclerView.LayoutManager layoutManager;
-    private static RecyclerView recyclerView;
+    private static RecyclerView recyclerView, recyclerViewTwo;
     private static ArrayList<DataDateModel> data;
+
+    private static ArrayList<DataMeetingModel> dataMeeting;
+
     static View.OnClickListener myOnClickListener;
     private static ArrayList<Integer> removedItems;
+
+    RecyclerView.ItemDecoration itemDecoration;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -42,7 +49,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home, container, false);
-        myOnClickListener = new MyOnClickListener(getActivity());
+
 
         recyclerView = (RecyclerView) v.findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -52,12 +59,12 @@ public class HomeFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         data = new ArrayList<DataDateModel>();
-        for (int i = 0; i < MyData.dayArray.length; i++) {
+        for (int i = 0; i < MyDaysData.dayArray.length; i++) {
             data.add(new DataDateModel(
-                    MyData.dayArray[i],
-                    MyData.dateArray[i],
-                    MyData.id_[i]
-//                    MyData.drawableArray[i]
+                    MyDaysData.dayArray[i],
+                    MyDaysData.dateArray[i],
+                    MyDaysData.id_[i]
+//                    MyDaysData.drawableArray[i]
             ));
         }
 
@@ -65,51 +72,36 @@ public class HomeFragment extends Fragment {
 
         adapter = new CardHomeDateAdapter(data);
         recyclerView.setAdapter(adapter);
+
+
+        recyclerViewTwo = (RecyclerView) v.findViewById(R.id.my_recycler_view_two);
+        recyclerViewTwo.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(getActivity());
+        recyclerViewTwo.setLayoutManager(layoutManager);
+        recyclerViewTwo.setItemAnimator(new DefaultItemAnimator());
+
+        dataMeeting = new ArrayList<DataMeetingModel>();
+        for (int i = 0; i < MyMeetingData.meetingTypeArray.length; i++) {
+            dataMeeting.add(new DataMeetingModel(
+                    MyMeetingData.meetingTypeArray[i],
+                    MyMeetingData.timeArray[i],
+                    MyMeetingData.placeArray[i],
+                    MyMeetingData.id_[i],
+                    MyMeetingData.drawableArray[i]
+            ));
+        }
+
+        removedItems = new ArrayList<Integer>();
+        itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
+        recyclerViewTwo.addItemDecoration(itemDecoration);
+
+        adapterTwo = new CardHomeMeetingAdapter(dataMeeting);
+        recyclerViewTwo.setAdapter(adapterTwo);
+
+
         return v;
     }
 
-    private static class MyOnClickListener implements View.OnClickListener {
 
-        private final Context context;
-
-        private MyOnClickListener(Context context) {
-            this.context = context;
-        }
-
-        @Override
-        public void onClick(View v) {
-            removeItem(v);
-        }
-
-        private void removeItem(View v) {
-            int selectedItemPosition = recyclerView.getChildPosition(v);
-            RecyclerView.ViewHolder viewHolder
-                    = recyclerView.findViewHolderForPosition(selectedItemPosition);
-            TextView textViewName
-                    = (TextView) viewHolder.itemView.findViewById(R.id.textViewDay);
-            String selectedName = (String) textViewName.getText();
-            int selectedItemId = -1;
-            for (int i = 0; i < MyData.dayArray.length; i++) {
-                if (selectedName.equals(MyData.dateArray[i])) {
-                    selectedItemId = MyData.id_[i];
-                }
-            }
-            removedItems.add(selectedItemId);
-            data.remove(selectedItemPosition);
-            adapter.notifyItemRemoved(selectedItemPosition);
-        }
-    }
-
-
-    private void addRemovedItemToList() {
-        int addItemAtListPosition = 3;
-        data.add(addItemAtListPosition, new DataDateModel(
-                MyData.dayArray[removedItems.get(0)],
-                MyData.dateArray[removedItems.get(0)],
-                MyData.id_[removedItems.get(0)]
-//                MyData.drawableArray[removedItems.get(0)]
-        ));
-        adapter.notifyItemInserted(addItemAtListPosition);
-        removedItems.remove(0);
-    }
 }

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <RelativeLayout
+        android:id="@+id/topContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvMeetingType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Meeting with Jane"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/ImageViewAvatar"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/janet" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/topContent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_access_time_black_24dp" />
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="2dp"
+                android:text="8-10 am" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/topContent"
+            android:layout_marginLeft="15dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_person_pin_circle_black_24dp" />
+
+            <TextView
+                android:id="@+id/tvPlace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="2dp"
+                android:text="Starbucks" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
