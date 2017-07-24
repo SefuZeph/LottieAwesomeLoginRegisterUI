@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.example.sefu.awesomeloginui.fragment.HomeFragment;
+import com.example.sefu.awesomeloginui.fragment.ProfileFragment;
 import com.example.sefu.awesomeloginui.fragment.SettingsFragment;
 import com.example.sefu.awesomeloginui.menu.DrawerAdapter;
 import com.example.sefu.awesomeloginui.menu.DrawerItem;
@@ -101,6 +102,9 @@ public class Home extends AppCompatActivity implements DrawerAdapter.OnItemSelec
         } else if (position == POS_LISTS) {
 
         } else if (position == POS_PROFILE) {
+
+            ProfileFragment profileFragment = new ProfileFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, profileFragment).commit();
 
         } else if (position == POS_TIMELINE) {
 
