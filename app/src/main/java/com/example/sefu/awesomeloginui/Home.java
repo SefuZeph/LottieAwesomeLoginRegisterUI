@@ -12,10 +12,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.example.sefu.awesomeloginui.fragment.HomeFragment;
+import com.example.sefu.awesomeloginui.fragment.SettingsFragment;
 import com.example.sefu.awesomeloginui.menu.DrawerAdapter;
 import com.example.sefu.awesomeloginui.menu.DrawerItem;
 import com.example.sefu.awesomeloginui.menu.SimpleItem;
-import com.example.sefu.awesomeloginui.menu.SpaceItem;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 
 import java.util.Arrays;
@@ -87,11 +87,13 @@ public class Home extends AppCompatActivity implements DrawerAdapter.OnItemSelec
 
         } else if (position == POS_SETTINGS) {
 
+            SettingsFragment settingsFragment = new SettingsFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, settingsFragment).commit();
 
         } else if (position == POS_HOME) {
 
-            HomeFragment homeFragment=new HomeFragment();
-            getSupportFragmentManager().beginTransaction().replace(R.id.container,homeFragment).commit();
+            HomeFragment homeFragment = new HomeFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
 
 
         } else if (position == POS_GROUPS) {
