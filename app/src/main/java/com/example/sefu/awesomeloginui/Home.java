@@ -1,16 +1,20 @@
 package com.example.sefu.awesomeloginui;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
+import com.example.sefu.awesomeloginui.fragment.GroupFragment;
 import com.example.sefu.awesomeloginui.fragment.HomeFragment;
 import com.example.sefu.awesomeloginui.fragment.ProfileFragment;
 import com.example.sefu.awesomeloginui.fragment.SettingsFragment;
@@ -81,6 +85,32 @@ public class Home extends AppCompatActivity implements DrawerAdapter.OnItemSelec
     public void onItemSelected(int position) {
         if (position == POS_LOGOUT) {
 
+            //Creating an alert dialog to confirm logout
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setMessage("Are you sure you want to logout?");
+            alertDialogBuilder.setPositiveButton("Yes",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+
+                            //Starting login activity
+                            Intent intent = new Intent(getApplicationContext(), Login.class);
+                            startActivity(intent);
+                        }
+                    });
+
+            alertDialogBuilder.setNegativeButton("No",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+
+                        }
+                    });
+
+            //Showing the alert dialog
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+
 
         } else if (position == POS_CALENDER) {
 
@@ -98,6 +128,9 @@ public class Home extends AppCompatActivity implements DrawerAdapter.OnItemSelec
 
 
         } else if (position == POS_GROUPS) {
+
+            GroupFragment groupFragment = new GroupFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, groupFragment).commit();
 
         } else if (position == POS_LISTS) {
 
